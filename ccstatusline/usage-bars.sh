@@ -30,5 +30,6 @@ for ((i = llenas; i < ancho; i++)); do barra_vacia+="─"; done
 hora=""
 [ -n "$reset" ] && hora=" ↻ $(date -d "@$reset" +"$fmt" 2>/dev/null)"
 
-printf '\033[%sm%s %s\033[2m%s\033[22m %3d%%\033[0m%s' \
-  "$color" "$etiqueta" "$barra_llena" "$barra_vacia" "$entero" "$hora"
+gris='38;2;86;95;137'   # parte vacía: gris azulado fijo, distinto del color de uso
+printf '\033[%sm%s %s\033[%sm%s\033[%sm %3d%%\033[0m%s' \
+  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "$entero" "$hora"
