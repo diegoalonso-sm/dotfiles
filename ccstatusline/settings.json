@@ -72,20 +72,18 @@
   "customCommandCacheTtlSeconds": 0,
   "minimalistMode": false,
   "powerline": {
-    "enabled": true,
+    "enabled": false,
     "separators": [
-      ""
+      ""
     ],
     "separatorInvertBackground": [
       false
     ],
-    "startCaps": [
-      ""
-    ],
-    "endCaps": [
-      ""
-    ],
+    "startCaps": [],
+    "endCaps": [],
     "autoAlign": false,
     "continueThemeAcrossLines": false
-  }
+  },
+  "defaultPadding": " ",
+  "defaultSeparator": " "
 }
