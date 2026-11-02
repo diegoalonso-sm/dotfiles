@@ -24,8 +24,8 @@ fi
 ancho=10
 llenas=$(( (entero * ancho + 50) / 100 )); [ "$llenas" -gt "$ancho" ] && llenas=$ancho
 barra_llena=""; barra_vacia=""
-for ((i = 0; i < llenas; i++)); do barra_llena+="━"; done
-for ((i = llenas; i < ancho; i++)); do barra_vacia+="─"; done
+for ((i = 0; i < llenas; i++)); do barra_llena+="●"; done
+for ((i = llenas; i < ancho; i++)); do barra_vacia+="○"; done
 
 hora=""
 [ -n "$reset" ] && hora=" ↻ $(date -d "@$reset" +"$fmt" 2>/dev/null)"
