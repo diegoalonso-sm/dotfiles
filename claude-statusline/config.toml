@@ -1,2 +1,1 @@
-preset = "default"
-format = "$directory | $git_branch | $model | $cost | $context"
+preset = "catppuccin"

@@ -11,6 +11,14 @@ git clone <url-de-este-repo> ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-El script descarga el binario (verifica el checksum), copia la configuración a
+En el **equipo local** (donde corre Zed), una sola vez, para las flechas powerline:
+
+```bash
+~/dotfiles/local/install-nerd-font.sh
+```
+
+Sin la fuente, cambia `preset` a `default` o `minimal` en `claude-statusline/config.toml`.
+
+`install.sh` (contenedor): descarga el binario (verifica el checksum), copia la configuración a
 `~/.config/claude-statusline/` y agrega `statusLine` a `~/.claude/settings.json`
 sin tocar el resto de ese archivo. No se guardan permisos, tokens ni rutas privadas.
