@@ -41,13 +41,6 @@
       },
       {
         "id": "6",
-        "type": "session-cost",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:e0af68",
-        "rawValue": true
-      },
-      {
-        "id": "7",
         "type": "session-clock",
         "color": "hex:1a1b26",
         "backgroundColor": "hex:ff9e64",
