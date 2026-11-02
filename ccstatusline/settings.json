@@ -25,10 +25,12 @@
       },
       {
         "id": "4",
-        "type": "context-percentage",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/context-tokens.sh",
+        "preserveColors": false,
+        "timeout": 1500,
         "color": "hex:1a1b26",
-        "backgroundColor": "hex:9ece6a",
-        "rawValue": true
+        "backgroundColor": "hex:9ece6a"
       },
       {
         "id": "5",
