@@ -6,8 +6,8 @@ set -uo pipefail
 
 ventana="${1:-5h}"
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta="├─▸ 5h"; fmt="%H:%M" ;;
-  7d) clave="seven_day"; etiqueta="╰─▸ 7d"; fmt="%a %d" ;;
+  5h) clave="five_hour"; etiqueta=" 5h"; fmt="%H:%M" ;;
+  7d) clave="seven_day"; etiqueta=" 7d"; fmt="%a %d" ;;
   *)  exit 0 ;;
 esac
 

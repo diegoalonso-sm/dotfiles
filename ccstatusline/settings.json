@@ -47,8 +47,7 @@
         "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
         "preserveColors": true,
         "timeout": 1500,
-        "color": "hex:c0caf5",
-        "backgroundColor": "hex:292e42"
+        "color": "hex:c0caf5"
       }
     ],
     [
@@ -58,8 +57,7 @@
         "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
         "preserveColors": true,
         "timeout": 1500,
-        "color": "hex:c0caf5",
-        "backgroundColor": "hex:292e42"
+        "color": "hex:c0caf5"
       }
     ]
   ],
@@ -82,10 +80,14 @@
       false
     ],
     "startCaps": [
-      ""
+      "",
+      "",
+      ""
     ],
     "endCaps": [
-      ""
+      "",
+      "",
+      ""
     ],
     "autoAlign": false,
     "continueThemeAcrossLines": false
