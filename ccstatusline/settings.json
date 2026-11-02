@@ -11,20 +11,34 @@
       },
       {
         "id": "2",
+        "type": "thinking-effort",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:9d7cd8",
+        "rawValue": true
+      },
+      {
+        "id": "3",
         "type": "current-working-dir",
         "color": "hex:1a1b26",
         "backgroundColor": "hex:bb9af7",
         "rawValue": true
       },
       {
-        "id": "3",
+        "id": "4",
         "type": "git-branch",
         "color": "hex:1a1b26",
         "backgroundColor": "hex:7dcfff",
         "rawValue": true
       },
       {
-        "id": "4",
+        "id": "5",
+        "type": "git-changes",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:73daca",
+        "rawValue": true
+      },
+      {
+        "id": "6",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/context-tokens.sh",
         "preserveColors": false,
@@ -33,8 +47,15 @@
         "backgroundColor": "hex:9ece6a"
       },
       {
-        "id": "5",
+        "id": "7",
         "type": "session-cost",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:e0af68",
+        "rawValue": true
+      },
+      {
+        "id": "8",
+        "type": "session-clock",
         "color": "hex:1a1b26",
         "backgroundColor": "hex:ff9e64",
         "rawValue": true
@@ -42,7 +63,7 @@
     ],
     [
       {
-        "id": "6",
+        "id": "b6",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
         "preserveColors": true,
@@ -52,7 +73,7 @@
     ],
     [
       {
-        "id": "7",
+        "id": "b7",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
         "preserveColors": true,
