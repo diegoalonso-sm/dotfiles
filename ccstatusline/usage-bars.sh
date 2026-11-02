@@ -6,8 +6,8 @@ set -uo pipefail
 
 ventana="${1:-5h}"
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta=" 5h"; fmt="%H:%M" ;;
-  7d) clave="seven_day"; etiqueta=" 7d"; fmt="%a %d" ;;
+  5h) clave="five_hour"; etiqueta="╭╴5h"; fmt="%H:%M" ;;
+  7d) clave="seven_day"; etiqueta="╰╴7d"; fmt="%a %d" ;;
   *)  exit 0 ;;
 esac
 
@@ -21,7 +21,7 @@ elif [ "$entero" -ge 70 ]; then color='38;2;224;175;104'   # amarillo
 else                            color='38;2;158;206;106'   # verde
 fi
 
-ancho=10
+ancho=6
 llenas=$(( (entero * ancho + 50) / 100 )); [ "$llenas" -gt "$ancho" ] && llenas=$ancho
 barra_llena=""; barra_vacia=""
 for ((i = 0; i < llenas; i++)); do barra_llena+="█"; done
