@@ -83,5 +83,6 @@
     "endCaps": [],
     "autoAlign": false,
     "continueThemeAcrossLines": false
-  }
+  },
+  "defaultPadding": "  "
 }
