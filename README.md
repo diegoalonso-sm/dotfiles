@@ -1,24 +1,36 @@
 # dotfiles
 
-Configuración personal de herramientas de terminal.
+Configuración personal de Claude Code y del terminal.
 
-- `claude-statusline/`: tema de la barra de estado de Claude Code ([claude-statusline](https://github.com/felipeelias/claude-statusline)).
+## Statusline: ccstatusline
 
-## Uso
+Tres líneas con tema Tokyo Night en powerline: resumen (modelo, directorio, rama, contexto, costo) y una barra
+por cada límite del plan, de 5 horas y semanal. Las barras cambian de color con el uso
+(verde < 70 %, amarillo 70-89 %, rojo >= 90 %) y muestran la hora de reinicio.
+Las barras vienen del script `ccstatusline/usage-bars.sh`, ya que ccstatusline no tiñe
+sus barras por umbral. Si el plan no informa límites, esas dos líneas quedan vacías.
+
+### Contenedor o servidor (donde corre Claude Code)
 
 ```bash
 git clone <url-de-este-repo> ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-En el **equipo local** (donde corre Zed), una sola vez, para las flechas powerline:
+Instala Bun (baseline, sin AVX y sin root; no hay Node), ccstatusline en versión fija, copia
+`ccstatusline/` a `~/.config/ccstatusline/` y agrega `statusLine` a `~/.claude/settings.json`
+sin tocar el resto. Requiere `jq`, `curl`, `unzip` y `python3`.
+
+### Equipo local (donde corre Zed)
 
 ```bash
 ~/dotfiles/local/install-nerd-font.sh
 ```
 
-Sin la fuente, cambia `preset` a `default` o `minimal` en `claude-statusline/config.toml`.
+Instala la Nerd Font. Luego, en el `settings.json` local de Zed:
 
-`install.sh` (contenedor): descarga el binario (verifica el checksum), copia la configuración a
-`~/.config/claude-statusline/` y agrega `statusLine` a `~/.claude/settings.json`
-sin tocar el resto de ese archivo. No se guardan permisos, tokens ni rutas privadas.
+```json
+"terminal": { "font_family": "JetBrainsMono Nerd Font", "line_height": "standard" }
+```
+
+Sin la fuente, quita `powerline.enabled` (o los glifos) en `ccstatusline/settings.json`.

@@ -1,0 +1,91 @@
+{
+  "version": 4,
+  "lines": [
+    [
+      {
+        "id": "1",
+        "type": "model",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:7aa2f7",
+        "rawValue": true
+      },
+      {
+        "id": "2",
+        "type": "current-working-dir",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:bb9af7",
+        "rawValue": true
+      },
+      {
+        "id": "3",
+        "type": "git-branch",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:7dcfff",
+        "rawValue": true
+      },
+      {
+        "id": "4",
+        "type": "context-percentage",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:9ece6a",
+        "rawValue": true
+      },
+      {
+        "id": "5",
+        "type": "session-cost",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:ff9e64",
+        "rawValue": true
+      }
+    ],
+    [
+      {
+        "id": "6",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5",
+        "backgroundColor": "hex:292e42"
+      }
+    ],
+    [
+      {
+        "id": "7",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5",
+        "backgroundColor": "hex:292e42"
+      }
+    ]
+  ],
+  "flexMode": "full",
+  "compactThreshold": 60,
+  "colorLevel": 3,
+  "defaultPaddingSide": "both",
+  "inheritSeparatorColors": false,
+  "globalBold": false,
+  "gitCacheTtlSeconds": 5,
+  "terminalWidthCacheTtlSeconds": 5,
+  "customCommandCacheTtlSeconds": 0,
+  "minimalistMode": false,
+  "powerline": {
+    "enabled": true,
+    "separators": [
+      ""
+    ],
+    "separatorInvertBackground": [
+      false
+    ],
+    "startCaps": [
+      ""
+    ],
+    "endCaps": [
+      ""
+    ],
+    "autoAlign": false,
+    "continueThemeAcrossLines": false
+  }
+}
