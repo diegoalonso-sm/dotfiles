@@ -17,6 +17,22 @@
         "rawValue": true
       },
       {
+        "id": "5",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/context-tokens.sh",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:9ece6a"
+      },
+      {
+        "id": "6",
+        "type": "session-clock",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:ff9e64",
+        "rawValue": true
+      },
+      {
         "id": "3",
         "type": "current-working-dir",
         "color": "hex:1a1b26",
@@ -76,22 +92,6 @@
         "timeout": 1500,
         "color": "hex:1a1b26",
         "backgroundColor": "hex:f7768e"
-      },
-      {
-        "id": "5",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/context-tokens.sh",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:9ece6a"
-      },
-      {
-        "id": "6",
-        "type": "session-clock",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:ff9e64",
-        "rawValue": true
       }
     ],
     [
