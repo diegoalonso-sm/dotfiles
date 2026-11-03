@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Datos de git del directorio de la sesión. Lee el JSON de Claude Code por stdin.
 # Uso: git-info.sh dir|repo|branch|worktree|upstream|changes|pr
-#   dir:  directorio de la sesión, con ~ en vez del home (dentro o fuera de un repo).
+#   dir:  ruta absoluta del directorio de la sesión (dentro o fuera de un repo).
 #   repo: nombre del repo (más la subcarpeta si corresponde); fuera de un repo, el directorio.
 # Sin dato imprime "no repo", "no branch", "no worktree", "no upstream", "no changes" o "no PR",
 # para que el segmento no desaparezca.
@@ -15,7 +15,7 @@ campo="${1:-branch}"
 dir=$(jq -r '.workspace.current_dir // .cwd // empty' 2>/dev/null)
 
 if [ "$campo" = "dir" ]; then
-  printf '%s' "${dir:+${dir/#$HOME/\~}}"
+  printf '%s' "$dir"
   [ -n "$dir" ] || printf 'no dir'
   exit 0
 fi
