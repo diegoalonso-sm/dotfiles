@@ -24,8 +24,8 @@ if [ "$ventana" = rama ]; then
   exit 0
 fi
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta="5h"; fmt="%a %d at %H:%M" ;;
-  7d) clave="seven_day"; etiqueta="7d"; fmt="%a %d at %H:%M" ;;
+  5h) clave="five_hour"; etiqueta="5h" ;;
+  7d) clave="seven_day"; etiqueta="7d" ;;
   *)  exit 0 ;;
 esac
 
@@ -52,7 +52,7 @@ if [ -n "$reset" ]; then
   elif [ "$falta" -ge 3600 ];  then resta="$((falta / 3600))h $(printf '%02d' $(( falta % 3600 / 60 )))m"
   else                              resta="$(( falta / 60 ))m"
   fi
-  hora=", resets $(LC_TIME=C date -d "@$reset" +"$fmt" 2>/dev/null) (in $resta)"
+  hora=", resets in $resta"
 fi
 
 if [ "$ventana" = 5h ]; then
