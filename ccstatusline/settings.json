@@ -5,16 +5,16 @@
       {
         "id": "1",
         "type": "model",
-        "color": "hex:7aa2f7",
+        "color": "hex:1a1b26",
         "rawValue": true,
-        "merge": true
+        "backgroundColor": "hex:7aa2f7"
       },
       {
         "id": "2",
         "type": "thinking-effort",
         "color": "hex:9d7cd8",
         "rawValue": true,
-        "merge": true
+        "backgroundColor": "hex:3b4261"
       },
       {
         "id": "5",
@@ -23,16 +23,15 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:9ece6a",
-        "merge": true
+        "backgroundColor": "hex:292e42"
       },
       {
         "id": "6",
         "type": "session-clock",
         "color": "hex:ff9e64",
-        "rawValue": true
-      }
-    ],
-    [
+        "rawValue": true,
+        "backgroundColor": "hex:1f2335"
+      },
       {
         "id": "3",
         "type": "current-working-dir",
@@ -46,8 +45,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh repo",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:2ac3de"
+        "color": "hex:2ac3de",
+        "backgroundColor": "hex:414868"
       },
       {
         "id": "4",
@@ -55,8 +54,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh branch",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:7dcfff"
+        "color": "hex:7dcfff",
+        "backgroundColor": "hex:3b4261"
       },
       {
         "id": "4w",
@@ -64,8 +63,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:73daca"
+        "color": "hex:73daca",
+        "backgroundColor": "hex:343a55"
       },
       {
         "id": "4u",
@@ -73,8 +72,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:b4f9f8"
+        "color": "hex:b4f9f8",
+        "backgroundColor": "hex:2f3549"
       },
       {
         "id": "4c",
@@ -82,8 +81,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh changes",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:e0af68"
+        "color": "hex:e0af68",
+        "backgroundColor": "hex:292e42"
       },
       {
         "id": "4p",
@@ -91,8 +90,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh pr",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:f7768e"
+        "color": "hex:f7768e",
+        "backgroundColor": "hex:1f2335"
       }
     ],
     [
@@ -129,19 +128,17 @@
   "powerline": {
     "enabled": true,
     "separators": [
-      ""
+      ""
     ],
     "separatorInvertBackground": [
       false
     ],
     "startCaps": [
-      "",
-      "",
+      "░▒▓",
       "",
       ""
     ],
     "endCaps": [
-      "",
       "",
       "",
       ""
