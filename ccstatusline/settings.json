@@ -110,9 +110,10 @@
         "id": "5",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/context-tokens.sh",
-        "preserveColors": true,
+        "preserveColors": false,
         "timeout": 1500,
-        "merge": true
+        "merge": true,
+        "color": "hex:9ece6a"
       },
       {
         "id": "icc",

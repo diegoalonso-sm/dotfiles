@@ -15,8 +15,7 @@ campo="${1:-branch}"
 dir=$(jq -r '.workspace.current_dir // .cwd // empty' 2>/dev/null)
 
 if [ "$campo" = "dir" ]; then
-  printf '%s' "$dir"
-  [ -n "$dir" ] || printf 'no dir'
+  printf '%s %s' $'\U000F024B' "${dir:-no dir}"
   exit 0
 fi
 valor=""
@@ -78,10 +77,19 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
       ;;
   esac
 fi
+# Ícono Nerd Font por segmento, también cuando no hay dato.
+case "$campo" in
+  repo)     icono=$'\U000F024B' ;;   # carpeta
+  branch)   icono=$'\U000F062C' ;;   # rama
+  worktree) icono=$'\U000F0645' ;;   # árbol
+  upstream) icono=$'\U000F04E6' ;;   # sincronización
+  pr|PR)    icono=$'\U000F04C2' ;;   # pull request
+  *)        icono="" ;;
+esac
 [ "$campo" = "pr" ] && campo="PR"
 # Fuera de un repo, el segmento del repo muestra el directorio, con ~ en vez del home.
 if [ "$campo" = "repo" ] && [ -z "$valor" ] && [ -n "$dir" ]; then
   valor="${dir/#$HOME/\~}"
 fi
 
-printf '%s' "${valor:-no $campo}"
+printf '%s%s' "${icono:+$icono }" "${valor:-no $campo}"

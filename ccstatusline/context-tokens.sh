@@ -1,31 +1,17 @@
 #!/usr/bin/env bash
-# Contexto usado como medidor de 50 puntos (igual que las cuotas) más el porcentaje.
-# Lee el JSON de Claude Code por stdin. Verde < 70 %, amarillo 70-89 %, rojo >= 90 %.
-# Sin datos imprime "no context", como "no repo" o "no branch".
+# Contexto usado sobre el total, en tokens: "76k/200k 38%". Lee el JSON de Claude Code por stdin.
+# Sin colores propios: usa los del widget. Sin datos imprime "no context", como "no branch" o "no PR".
 set -uo pipefail
 
-pct=$(jq -r '
+salida=$(jq -r '
+  def fmt: if . >= 1000000 then ((. / 100000 | floor) / 10 | tostring) + "M"
+           elif . >= 1000 then ((. / 1000 | round | tostring) + "k")
+           else tostring end;
   .context_window as $c
   | ($c.context_window_size // empty) as $total
   | ($c.current_usage // {}) as $u
   | (($u.input_tokens // 0) + ($u.cache_creation_input_tokens // 0) + ($u.cache_read_input_tokens // 0)) as $usado
-  | (if ($usado > 0) then ($usado * 100 / $total) else ($c.used_percentage // 0) end)
-  | round
+  | (if ($usado > 0) then $usado else (($c.used_percentage // 0) * $total / 100 | round) end) as $n
+  | "\($n | fmt)/\($total | fmt) \(($n * 100 / $total) | round)%"
 ' 2>/dev/null)
-
-icono='󰊚'
-if [ -z "$pct" ]; then
-  printf '\033[38;2;158;206;106m%s no context\033[0m' "$icono"
-  exit 0
-fi
-
-if   [ "$pct" -ge 90 ]; then color='38;2;247;118;142'
-elif [ "$pct" -ge 70 ]; then color='38;2;224;175;104'
-else                         color='38;2;158;206;106'
-fi
-gris='38;2;86;95;137'
-llenas=$(( (pct * 50 + 50) / 100 )); [ "$llenas" -gt 50 ] && llenas=50
-llena=""; vacia=""
-for ((i = 0; i < llenas; i++)); do llena+="●"; done
-for ((i = llenas; i < 50; i++)); do vacia+="○"; done
-printf '\033[%sm%s %s\033[%sm%s\033[%sm %s%%\033[0m' "$color" "$icono" "$llena" "$gris" "$vacia" "$color" "$pct"
+printf '󰊚 %s' "${salida:-no context}"
