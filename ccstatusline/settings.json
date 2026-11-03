@@ -3,20 +3,13 @@
   "lines": [
     [
       {
-        "id": "3",
-        "type": "current-working-dir",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:bb9af7",
-        "rawValue": true
-      },
-      {
         "id": "4r",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/git-info.sh repo",
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:1a1b26",
-        "backgroundColor": "hex:2ac3de"
+        "backgroundColor": "hex:bb9af7"
       },
       {
         "id": "4",

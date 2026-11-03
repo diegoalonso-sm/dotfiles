@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Datos de git del directorio de la sesión. Lee el JSON de Claude Code por stdin.
 # Uso: git-info.sh repo|branch|worktree|upstream|changes|pr
+#   repo: nombre del repo (más la subcarpeta si corresponde); fuera de un repo, el directorio.
 # Sin dato imprime "no repo", "no branch", "no worktree", "no upstream", "no changes" o "no PR",
 # para que el segmento no desaparezca.
 #   upstream: commits por subir (↑) y por bajar (↓) respecto del remoto, siempre los dos.
@@ -20,6 +21,9 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
       # En un worktree, el repo es el del checkout principal, no el del worktree.
       comun=$(git -C "$dir" rev-parse --path-format=absolute --git-common-dir 2>/dev/null)
       valor=$(basename "$(dirname "$comun")")
+      # Si la sesión está en una subcarpeta, se agrega la ruta dentro del repo.
+      sub=$(git -C "$dir" rev-parse --show-prefix 2>/dev/null); sub="${sub%/}"
+      [ -n "$sub" ] && valor="$valor/$sub"
       ;;
     branch)
       valor=$(git -C "$dir" branch --show-current 2>/dev/null)
@@ -68,5 +72,9 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
   esac
 fi
 [ "$campo" = "pr" ] && campo="PR"
+# Fuera de un repo, el segmento del repo muestra el directorio, con ~ en vez del home.
+if [ "$campo" = "repo" ] && [ -z "$valor" ] && [ -n "$dir" ]; then
+  valor="${dir/#$HOME/\~}"
+fi
 
 printf '%s' "${valor:-no $campo}"
