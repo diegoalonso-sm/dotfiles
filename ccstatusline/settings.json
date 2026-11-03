@@ -76,9 +76,10 @@
         "id": "cierre",
         "type": "custom-text",
         "customText": "",
-        "color": "hex:f7768e",
-        "merge": true
-      },
+        "color": "hex:f7768e"
+      }
+    ],
+    [
       {
         "id": "icm",
         "type": "custom-text",
@@ -165,9 +166,11 @@
     "startCaps": [
       "",
       "",
+      "",
       ""
     ],
     "endCaps": [
+      "",
       "",
       "",
       ""
