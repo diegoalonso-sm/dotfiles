@@ -2,8 +2,8 @@
 # Barra de uso del plan para ccstatusline (widget custom-command con preserveColors).
 # Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh 5h|7d
 # Verde < 70 %, amarillo 70-89 %, rojo >= 90 %. Sin datos de límite: no imprime nada.
-# A la izquierda va el correo de la cuenta de Claude; a su derecha, las dos barras unidas por un corchete redondeado:
-#   󰀉 correo ╭╴5h ...
+# A la izquierda va el correo de la cuenta de Claude; las dos barras salen de él en forma de árbol:
+#   󰀉 correo ─┬╴5h ...
 #            ╰╴7d ...
 set -uo pipefail
 
@@ -46,11 +46,11 @@ gris='38;2;86;95;137'   # parte vacía y ramas del árbol: gris azulado fijo
 correo=$(jq -r '.oauthAccount.emailAddress // empty' "${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json" 2>/dev/null)
 correo="${correo:-no account}"
 if [ "$ventana" = 5h ]; then
-  prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm╭╴' $'\U000F0009' "$correo" "$gris")
+  prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴' $'\U000F0009' "$correo" "$gris")
 else
-  # Ícono, espacio, correo y espacio ocupan ${#correo}+3 columnas; ahí cae el corchete.
+  # Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí cae la rama.
   # ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
-  prefijo=$(printf '\033[%sm%*s╰╴' "$gris" $(( ${#correo} + 3 )) '')
+  prefijo=$(printf '\033[%sm%*s╰╴' "$gris" $(( ${#correo} + 4 )) '')
 fi
 printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
   "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
