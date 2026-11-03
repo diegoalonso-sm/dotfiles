@@ -49,9 +49,8 @@ if [ "$ventana" = 5h ]; then
   prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴' $'\U000F0009' "$correo" "$gris")
 else
   # Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí cae la rama.
-  # Espacios no separables: ccstatusline borra los espacios normales al inicio de la línea.
-  sangria=""; for ((i = 0; i < ${#correo} + 4; i++)); do sangria+=$'\u00a0'; done
-  prefijo=$(printf '%s\033[%sm└╴' "$sangria" "$gris")
+  # ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
+  prefijo=$(printf '\033[%sm%*s└╴' "$gris" $(( ${#correo} + 4 )) '')
 fi
 printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
   "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
