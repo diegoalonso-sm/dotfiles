@@ -1,19 +1,24 @@
 # dotfiles
 
-Configuración personal de la barra de estado de Claude Code. Funciona en un terminal, en Zed y en VS Code.
+Configuración personal de la barra de estado de Claude Code. Funciona en un terminal (probado en Warp), en Zed y en VS Code.
 
-La barra tiene tres líneas con la paleta Tokyo Night:
+La barra tiene un breadcrumb del trabajo y, debajo, un árbol con la cuenta de Claude, con la paleta Tokyo Night:
 
 ```
- Opus 5  high  ~/proyecto  main  76k/200k 38%  1hr 31m
-╭╴5h ●●●●●●●●●○○○○○○○○○○○○○○○○ 38% ↻ 15:45 (2h13m)
-╰╴7d ●●●●●●●○○○○○○○○○○○○○○○○○ 29% ↻ Thu 05 (3d4h)
+󰉋 /home/usuario/proyecto ▶ 󰘬 main ▶ 󰙅 no worktree ▶ 󰓦 ↑2 ↓0 ▶ 󰓂 PR #153 ◗
+
+󰀉 usuario@empresa.cl ─┬╴󰚩 Opus 5.5  󰧑 high  󰊚 76k/200k 38%  󰥔 1hr 31m
+                      ├╴5h ●●●●●●●●●●○○○○○○○○○○○○○○○ 38% used, resets in 2h 13m
+                      ╰╴7d ●●●●●●●○○○○○○○○○○○○○○○○○○ 29% used, resets in 3d 5h
 ```
 
-- Línea 1: modelo, esfuerzo de razonamiento, directorio, rama, contexto en tokens y duración de la sesión.
-- Líneas 2 y 3: uso del límite de 5 horas y del semanal. Los puntos llenos cambian de color con el uso (verde bajo 70 %, amarillo hasta 89 %, rojo desde 90 %) y al lado queda el tiempo que falta para el reinicio.
+- Breadcrumb, en bloques de color: ruta absoluta del directorio, rama, worktree, commits por subir (↑) y por bajar (↓) respecto del remoto, y el PR abierto de la rama. Cuando no hay dato dice "no branch", "no worktree", "no upstream" o "no PR".
+- Árbol de la cuenta: el correo con el que está conectado Claude Code y, colgando de él, la sesión del agente (modelo, esfuerzo, contexto en tokens y duración) y el uso de los límites de 5 horas y semanal.
+- El esfuerzo cambia de color por nivel: low verde, medium amarillo, high naranja, xhigh y max rojo.
+- Las barras de uso cambian de color con el porcentaje: verde bajo 70 %, amarillo hasta 89 %, rojo desde 90 %.
+- El PR se consulta con `gh`, se guarda en caché 2 minutos en `~/.cache/ccstatusline/` y se actualiza en segundo plano. Al entrar a una rama nueva puede tardar unos segundos en aparecer.
 
-Si tu plan no informa límites de uso, esas dos líneas quedan vacías.
+Si tu plan no informa límites de uso, las líneas de 5h y 7d quedan vacías.
 
 ## Cómo está armado
 
@@ -35,7 +40,7 @@ git clone https://github.com/<tu-usuario>/dotfiles.git ~/dotfiles
 ~/dotfiles/install.sh
 ```
 
-Requiere `curl`, `unzip`, `jq` y `python3`. El script:
+Requiere `curl`, `unzip`, `jq`, `git` y `python3`. Para mostrar el PR, además `gh` con sesión iniciada. El script:
 
 1. Descarga Bun (versión baseline, sin AVX) y verifica su checksum. No usa Node ni necesita permisos de administrador.
 2. Instala `ccstatusline` en una versión fija.
@@ -105,7 +110,7 @@ Debes ver una media luna a la izquierda, una flecha sólida, una media luna a la
 Para ver la barra con datos de ejemplo, sin abrir Claude Code:
 
 ```bash
-echo '{"model":{"display_name":"Opus 5"},"cwd":"'"$PWD"'","context_window":{"context_window_size":200000,"current_usage":{"input_tokens":3000,"cache_read_input_tokens":73000}},"rate_limits":{"five_hour":{"used_percentage":38,"resets_at":'$(date -d '+2 hours' +%s)'},"seven_day":{"used_percentage":29,"resets_at":'$(date -d '+3 days' +%s)'}}}' | ~/.local/bin/ccstatusline
+echo '{"model":{"display_name":"Opus 5.5"},"effort":{"level":"high"},"cwd":"'"$PWD"'","context_window":{"context_window_size":200000,"current_usage":{"input_tokens":3000,"cache_read_input_tokens":73000}},"rate_limits":{"five_hour":{"used_percentage":38,"resets_at":'$(date -d '+2 hours' +%s)'},"seven_day":{"used_percentage":29,"resets_at":'$(date -d '+3 days' +%s)'}}}' | ~/.local/bin/ccstatusline
 ```
 
 En macOS cambia `date -d '+2 hours'` por `date -v+2H`.
@@ -120,7 +125,8 @@ En macOS cambia `date -d '+2 hours'` por `date -v+2H`.
 | La fuente no se aplica con SSH | El ajuste está en la configuración del servidor. Debe ir en la del equipo local. |
 | Colores distintos a los esperados en VS Code | Falta `terminal.integrated.minimumContrastRatio: 1`. |
 | Las líneas de uso salen vacías | Tu plan no informa límites a Claude Code (requiere la versión 2.1.80 o posterior). |
-| La barra se corta en un panel angosto | Baja `ancho=100` en `ccstatusline/usage-bars.sh`. Con 60 cabe en la mayoría de los paneles. |
+| La barra se corta en un panel angosto | Baja `ancho=25` en `ccstatusline/usage-bars.sh`, o acorta el breadcrumb quitando segmentos en `settings.json`. |
+| Siempre dice "no PR" | `gh` no está instalado o no tiene sesión iniciada con una cuenta que vea el repo. |
 
 ## Personalizar
 
@@ -128,8 +134,10 @@ Todo está en `ccstatusline/`:
 
 | Archivo | Qué controla |
 |---|---|
-| `settings.json` | Qué datos van en la línea principal, sus colores y el estilo powerline. |
-| `usage-bars.sh` | Las barras de 5 horas y semanal: ancho, símbolos, umbrales de color y formato de la hora. |
+| `settings.json` | Qué segmentos van en cada línea, su orden, colores, íconos y el estilo powerline. |
+| `git-info.sh` | Los segmentos del breadcrumb: directorio, rama, worktree, commits por subir y PR. |
+| `usage-bars.sh` | El correo de la cuenta, las ramas del árbol y las barras de 5 horas y semanal (ancho, símbolos, umbrales de color). |
+| `effort.sh` | El nivel de esfuerzo con su color. |
 | `context-tokens.sh` | El contexto como tokens usados sobre el total. |
 
 Los widgets disponibles están en la [documentación de ccstatusline](https://github.com/sirmalloc/ccstatusline/blob/main/docs/USAGE.md). También puedes abrir su editor interactivo con `~/.local/bin/ccstatusline` y copiar el resultado de `~/.config/ccstatusline/settings.json` al repo.
@@ -142,7 +150,9 @@ Para aplicar un cambio, edita el archivo en el repo y ejecuta `./install.sh`. Pa
 install.sh                    Instalador idempotente (barra y configuración)
 ccstatusline/
   settings.json               Configuración de ccstatusline
-  usage-bars.sh               Barras de 5 horas y 7 días
+  git-info.sh                 Directorio, rama, worktree, commits y PR
+  usage-bars.sh               Cuenta, árbol y barras de 5 horas y 7 días
+  effort.sh                   Esfuerzo con color por nivel
   context-tokens.sh           Contexto en tokens
 local/
   install-nerd-font.sh        Fuente en macOS y Linux
