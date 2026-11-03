@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 # Datos de git del directorio de la sesión. Lee el JSON de Claude Code por stdin.
-# Uso: git-info.sh repo|branch|worktree|upstream|changes
-# Sin dato imprime "no repo", "no branch", "no worktree", "no upstream" o "no changes",
+# Uso: git-info.sh repo|branch|worktree|upstream|changes|pr
+# Sin dato imprime "no repo", "no branch", "no worktree", "no upstream", "no changes" o "no PR",
 # para que el segmento no desaparezca.
-#   upstream: commits por subir y por bajar respecto del remoto (↑ adelante, ↓ atrás); "synced" si está al día.
-#   changes:  archivos en staging (+), modificados (~) y sin seguimiento (?); "clean" si no hay cambios.
+#   upstream: commits por subir (↑) y por bajar (↓) respecto del remoto, siempre los dos.
+#   changes:  archivos en staging (+), modificados (~) y sin seguimiento (?).
+#   pr:       número del PR abierto de la rama, vía gh. Se guarda en caché 2 minutos y se
+#             actualiza en segundo plano para no frenar la barra.
 set -uo pipefail
 
 campo="${1:-branch}"
@@ -31,20 +33,12 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
     upstream)
       if cuenta=$(git -C "$dir" rev-list --left-right --count '@{upstream}...HEAD' 2>/dev/null); then
         read -r atras adelante <<< "$cuenta"
-        if [ "$atras" -eq 0 ] && [ "$adelante" -eq 0 ]; then valor="synced"
-        else
-          partes=()
-          [ "$adelante" -gt 0 ] && partes+=("↑$adelante")
-          [ "$atras" -gt 0 ] && partes+=("↓$atras")
-          valor="${partes[*]}"
-        fi
+        valor="↑$adelante ↓$atras"
       fi
       ;;
     changes)
       estado=$(git -C "$dir" status --porcelain 2>/dev/null)
-      if [ -z "$estado" ]; then
-        valor="clean"
-      else
+      if [ -n "$estado" ]; then
         staged=$(grep -c '^[MADRC]' <<< "$estado")
         modif=$(grep -c '^.[MD]' <<< "$estado")
         nuevos=$(grep -c '^??' <<< "$estado")
@@ -55,7 +49,24 @@ if [ -n "$dir" ] && git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&
         valor="${partes[*]}"
       fi
       ;;
+    pr)
+      rama=$(git -C "$dir" branch --show-current 2>/dev/null)
+      if [ -n "$rama" ] && command -v gh >/dev/null; then
+        cache="${XDG_CACHE_HOME:-$HOME/.cache}/ccstatusline/pr-$(printf '%s' "$raiz:$rama" | md5sum | cut -c1-16)"
+        mkdir -p "$(dirname "$cache")"
+        edad=$(( $(date +%s) - $(stat -c %Y "$cache" 2>/dev/null || echo 0) ))
+        if [ "$edad" -ge 120 ]; then
+          touch "$cache"   # evita lanzar varias consultas mientras la primera corre
+          ( cd "$dir" && gh pr view --json number,state \
+              -q 'select(.state == "OPEN") | "PR #\(.number)"' > "$cache.tmp" 2>/dev/null
+            mv -f "$cache.tmp" "$cache" ) >/dev/null 2>&1 &
+        fi
+        valor=$(cat "$cache" 2>/dev/null)
+      fi
+      campo="PR"
+      ;;
   esac
 fi
+[ "$campo" = "pr" ] && campo="PR"
 
 printf '%s' "${valor:-no $campo}"
