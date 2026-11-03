@@ -4,7 +4,7 @@
 # Verde < 70 %, amarillo 70-89 %, rojo >= 90 %. Sin datos de límite: no imprime nada.
 # A la izquierda va el correo de la cuenta de Claude; las dos barras salen de él en forma de árbol:
 #   󰀉 correo ─┬╴5h ...
-#            └╴7d ...
+#            ╰╴7d ...
 set -uo pipefail
 
 ventana="${1:-5h}"
@@ -50,7 +50,7 @@ if [ "$ventana" = 5h ]; then
 else
   # Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí cae la rama.
   # ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
-  prefijo=$(printf '\033[%sm%*s└╴' "$gris" $(( ${#correo} + 4 )) '')
+  prefijo=$(printf '\033[%sm%*s╰╴' "$gris" $(( ${#correo} + 4 )) '')
 fi
 printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
   "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
