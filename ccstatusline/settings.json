@@ -14,7 +14,7 @@
         "type": "thinking-effort",
         "color": "hex:9d7cd8",
         "rawValue": true,
-        "backgroundColor": "hex:3b4261"
+        "backgroundColor": "hex:3b3352"
       },
       {
         "id": "5",
@@ -23,14 +23,14 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:9ece6a",
-        "backgroundColor": "hex:292e42"
+        "backgroundColor": "hex:3b4837"
       },
       {
         "id": "6",
         "type": "session-clock",
         "color": "hex:ff9e64",
         "rawValue": true,
-        "backgroundColor": "hex:1f2335"
+        "backgroundColor": "hex:533c36"
       },
       {
         "id": "3",
@@ -46,7 +46,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:2ac3de",
-        "backgroundColor": "hex:414868"
+        "backgroundColor": "hex:1e4554"
       },
       {
         "id": "4",
@@ -55,7 +55,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:7dcfff",
-        "backgroundColor": "hex:3b4261"
+        "backgroundColor": "hex:33485c"
       },
       {
         "id": "4w",
@@ -64,7 +64,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:73daca",
-        "backgroundColor": "hex:343a55"
+        "backgroundColor": "hex:304b4f"
       },
       {
         "id": "4u",
@@ -73,7 +73,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:b4f9f8",
-        "backgroundColor": "hex:2f3549"
+        "backgroundColor": "hex:40525a"
       },
       {
         "id": "4c",
@@ -82,7 +82,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:e0af68",
-        "backgroundColor": "hex:292e42"
+        "backgroundColor": "hex:4c4036"
       },
       {
         "id": "4p",
@@ -91,7 +91,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:f7768e",
-        "backgroundColor": "hex:1f2335"
+        "backgroundColor": "hex:513240"
       }
     ],
     [
