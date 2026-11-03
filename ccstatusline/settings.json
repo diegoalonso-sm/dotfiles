@@ -60,30 +60,9 @@
         "id": "cierre",
         "type": "custom-text",
         "customText": "",
-        "color": "hex:f7768e"
-      }
-    ],
-    [
-      {
-        "id": "b6",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
-        "preserveColors": true,
-        "timeout": 1500,
-        "color": "hex:c0caf5"
-      }
-    ],
-    [
-      {
-        "id": "b7",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
-        "preserveColors": true,
-        "timeout": 1500,
-        "color": "hex:c0caf5"
-      }
-    ],
-    [
+        "color": "hex:f7768e",
+        "merge": true
+      },
       {
         "id": "icm",
         "type": "custom-text",
@@ -128,6 +107,26 @@
         "color": "hex:ff9e64",
         "rawValue": true
       }
+    ],
+    [
+      {
+        "id": "b6",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5"
+      }
+    ],
+    [
+      {
+        "id": "b7",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5"
+      }
     ]
   ],
   "flexMode": "full",
@@ -151,11 +150,9 @@
     "startCaps": [
       "",
       "",
-      "",
       ""
     ],
     "endCaps": [
-      "",
       "",
       "",
       ""
