@@ -6,7 +6,7 @@ set -uo pipefail
 
 ventana="${1:-5h}"
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta="╭╴5h"; fmt="at %H:%M" ;;
+  5h) clave="five_hour"; etiqueta="╭╴5h"; fmt="%a %d at %H:%M" ;;
   7d) clave="seven_day"; etiqueta="╰╴7d"; fmt="%a %d at %H:%M" ;;
   *)  exit 0 ;;
 esac
@@ -39,4 +39,4 @@ fi
 
 gris='38;2;86;95;137'   # parte vacía: gris azulado fijo, distinto del color de uso
 printf '\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
-  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used, $(( 100 - entero ))% left" "$hora"
+  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
