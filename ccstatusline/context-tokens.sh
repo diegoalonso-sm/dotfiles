@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Contexto usado como medidor de 10 puntos más el porcentaje: "●●●●○○○○○○ 38%".
+# Contexto usado como medidor de 50 puntos (igual que las cuotas) más el porcentaje.
 # Lee el JSON de Claude Code por stdin. Verde < 70 %, amarillo 70-89 %, rojo >= 90 %.
 # Sin datos imprime "no context", como "no repo" o "no branch".
 set -uo pipefail
@@ -24,8 +24,8 @@ elif [ "$pct" -ge 70 ]; then color='38;2;224;175;104'
 else                         color='38;2;158;206;106'
 fi
 gris='38;2;86;95;137'
-llenas=$(( (pct * 10 + 50) / 100 )); [ "$llenas" -gt 10 ] && llenas=10
+llenas=$(( (pct * 50 + 50) / 100 )); [ "$llenas" -gt 50 ] && llenas=50
 llena=""; vacia=""
 for ((i = 0; i < llenas; i++)); do llena+="●"; done
-for ((i = llenas; i < 10; i++)); do vacia+="○"; done
+for ((i = llenas; i < 50; i++)); do vacia+="○"; done
 printf '\033[%sm%s %s\033[%sm%s\033[%sm %s%%\033[0m' "$color" "$icono" "$llena" "$gris" "$vacia" "$color" "$pct"
