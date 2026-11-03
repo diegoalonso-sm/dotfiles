@@ -110,6 +110,16 @@
     ],
     [
       {
+        "id": "acct",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/account.sh",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5"
+      }
+    ],
+    [
+      {
         "id": "b6",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
@@ -150,9 +160,11 @@
     "startCaps": [
       "",
       "",
+      "",
       ""
     ],
     "endCaps": [
+      "",
       "",
       "",
       ""
