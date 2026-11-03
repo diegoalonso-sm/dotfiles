@@ -5,16 +5,16 @@
       {
         "id": "1",
         "type": "model",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:7aa2f7",
-        "rawValue": true
+        "color": "hex:7aa2f7",
+        "rawValue": true,
+        "merge": true
       },
       {
         "id": "2",
         "type": "thinking-effort",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:9d7cd8",
-        "rawValue": true
+        "color": "hex:9d7cd8",
+        "rawValue": true,
+        "merge": true
       },
       {
         "id": "5",
@@ -22,16 +22,17 @@
         "commandPath": "~/.config/ccstatusline/context-tokens.sh",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:9ece6a"
+        "color": "hex:9ece6a",
+        "merge": true
       },
       {
         "id": "6",
         "type": "session-clock",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:ff9e64",
+        "color": "hex:ff9e64",
         "rawValue": true
-      },
+      }
+    ],
+    [
       {
         "id": "3",
         "type": "current-working-dir",
@@ -134,11 +135,13 @@
       false
     ],
     "startCaps": [
+      "",
       "",
       "",
       ""
     ],
     "endCaps": [
+      "",
       "",
       "",
       ""
