@@ -1,13 +1,28 @@
 #!/usr/bin/env bash
 # Barra de uso del plan para ccstatusline (widget custom-command con preserveColors).
-# Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh 5h|7d
+# Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh 5h|7d|rama
+# "rama" imprime solo la sangría y la esquina de la última rama (la del agente).
 # Verde < 70 %, amarillo 70-89 %, rojo >= 90 %. Sin datos de límite: no imprime nada.
 # A la izquierda va el correo de la cuenta de Claude; las dos barras salen de él en forma de árbol:
 #   󰀉 correo ─┬╴5h ...
-#            ╰╴7d ...
+#            ├╴7d ...
+#            ╰╴agente (modelo, esfuerzo, contexto, duración)
 set -uo pipefail
 
 ventana="${1:-5h}"
+gris='38;2;86;95;137'   # parte vacía y ramas del árbol: gris azulado fijo
+
+# Correo de la cuenta (oauthAccount.emailAddress en .claude.json, o en CLAUDE_CONFIG_DIR).
+correo=$(jq -r '.oauthAccount.emailAddress // empty' "${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json" 2>/dev/null)
+correo="${correo:-no account}"
+# Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí caen las ramas.
+# ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
+rama() { printf '\033[%sm%*s%s' "$gris" $(( ${#correo} + 4 )) '' "$1"; }
+
+if [ "$ventana" = rama ]; then
+  rama '╰╴'; printf '\033[0m'
+  exit 0
+fi
 case "$ventana" in
   5h) clave="five_hour"; etiqueta="5h"; fmt="%a %d at %H:%M" ;;
   7d) clave="seven_day"; etiqueta="7d"; fmt="%a %d at %H:%M" ;;
@@ -40,17 +55,10 @@ if [ -n "$reset" ]; then
   hora=", resets $(LC_TIME=C date -d "@$reset" +"$fmt" 2>/dev/null) (in $resta)"
 fi
 
-gris='38;2;86;95;137'   # parte vacía y ramas del árbol: gris azulado fijo
-
-# Correo de la cuenta (oauthAccount.emailAddress en .claude.json, o en CLAUDE_CONFIG_DIR).
-correo=$(jq -r '.oauthAccount.emailAddress // empty' "${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json" 2>/dev/null)
-correo="${correo:-no account}"
 if [ "$ventana" = 5h ]; then
   prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴' $'\U000F0009' "$correo" "$gris")
 else
-  # Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí cae la rama.
-  # ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
-  prefijo=$(printf '\033[%sm%*s╰╴' "$gris" $(( ${#correo} + 4 )) '')
+  prefijo=$(rama '├╴')
 fi
 printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
   "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
