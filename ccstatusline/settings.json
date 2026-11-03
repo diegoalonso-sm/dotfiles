@@ -42,15 +42,6 @@
         "backgroundColor": "hex:7dcfff"
       },
       {
-        "id": "4u",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:b4f9f8"
-      },
-      {
         "id": "4w",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
@@ -58,6 +49,15 @@
         "timeout": 1500,
         "color": "hex:1a1b26",
         "backgroundColor": "hex:73daca"
+      },
+      {
+        "id": "4u",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:b4f9f8"
       },
       {
         "id": "4c",
