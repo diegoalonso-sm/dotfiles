@@ -15,15 +15,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh repo",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:2ac3de",
-        "merge": "no-padding"
-      },
-      {
-        "id": "bc1",
-        "type": "custom-text",
-        "customText": " › ",
-        "color": "hex:565f89",
-        "merge": "no-padding"
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:2ac3de"
       },
       {
         "id": "4",
@@ -31,15 +24,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh branch",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:7dcfff",
-        "merge": "no-padding"
-      },
-      {
-        "id": "bc2",
-        "type": "custom-text",
-        "customText": " › ",
-        "color": "hex:565f89",
-        "merge": "no-padding"
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:7dcfff"
       },
       {
         "id": "4w",
@@ -47,8 +33,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:73daca",
-        "merge": true
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:73daca"
       },
       {
         "id": "4u",
@@ -56,8 +42,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:b4f9f8",
-        "merge": true
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:b4f9f8"
       },
       {
         "id": "4c",
@@ -65,8 +51,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh changes",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:e0af68",
-        "merge": true
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:e0af68"
       },
       {
         "id": "4p",
@@ -74,23 +60,8 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh pr",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:f7768e",
-        "merge": true
-      },
-      {
-        "id": "capmodel",
-        "type": "custom-text",
-        "customText": "",
-        "color": "hex:7aa2f7",
-        "merge": "no-padding"
-      },
-      {
-        "id": "padmodel",
-        "type": "custom-text",
-        "customText": " ",
         "color": "hex:1a1b26",
-        "backgroundColor": "hex:7aa2f7",
-        "merge": "no-padding"
+        "backgroundColor": "hex:f7768e"
       },
       {
         "id": "1",
@@ -102,9 +73,9 @@
       {
         "id": "2",
         "type": "thinking-effort",
-        "color": "hex:9d7cd8",
+        "color": "hex:1a1b26",
         "rawValue": true,
-        "merge": true
+        "backgroundColor": "hex:9d7cd8"
       },
       {
         "id": "5",
@@ -112,14 +83,15 @@
         "commandPath": "~/.config/ccstatusline/context-tokens.sh",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:9ece6a",
-        "merge": true
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:9ece6a"
       },
       {
         "id": "6",
         "type": "session-clock",
-        "color": "hex:ff9e64",
-        "rawValue": true
+        "color": "hex:1a1b26",
+        "rawValue": true,
+        "backgroundColor": "hex:ff9e64"
       }
     ],
     [
@@ -167,7 +139,7 @@
       ""
     ],
     "endCaps": [
-      "",
+      "",
       "",
       ""
     ],
