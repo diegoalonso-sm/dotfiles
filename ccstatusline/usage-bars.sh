@@ -6,8 +6,8 @@ set -uo pipefail
 
 ventana="${1:-5h}"
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta="╭╴5h"; fmt="%H:%M" ;;
-  7d) clave="seven_day"; etiqueta="╰╴7d"; fmt="%a %d" ;;
+  5h) clave="five_hour"; etiqueta="╭╴5h"; fmt="at %H:%M" ;;
+  7d) clave="seven_day"; etiqueta="╰╴7d"; fmt="%a %d at %H:%M" ;;
   *)  exit 0 ;;
 esac
 
@@ -30,13 +30,13 @@ for ((i = llenas; i < ancho; i++)); do barra_vacia+="○"; done
 hora=""
 if [ -n "$reset" ]; then
   falta=$(( reset - $(date +%s) )); [ "$falta" -lt 0 ] && falta=0
-  if   [ "$falta" -ge 86400 ]; then resta="$((falta / 86400))d$(( falta % 86400 / 3600 ))h"
-  elif [ "$falta" -ge 3600 ];  then resta="$((falta / 3600))h$(printf '%02d' $(( falta % 3600 / 60 )))m"
+  if   [ "$falta" -ge 86400 ]; then resta="$((falta / 86400))d $(( falta % 86400 / 3600 ))h"
+  elif [ "$falta" -ge 3600 ];  then resta="$((falta / 3600))h $(printf '%02d' $(( falta % 3600 / 60 )))m"
   else                              resta="$(( falta / 60 ))m"
   fi
-  hora=" ↻ $(date -d "@$reset" +"$fmt" 2>/dev/null) ($resta)"
+  hora=", resets $(LC_TIME=C date -d "@$reset" +"$fmt" 2>/dev/null) (in $resta)"
 fi
 
 gris='38;2;86;95;137'   # parte vacía: gris azulado fijo, distinto del color de uso
 printf '\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
-  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}%" "$hora"
+  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used, $(( 100 - entero ))% left" "$hora"
