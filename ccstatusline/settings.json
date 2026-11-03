@@ -5,7 +5,7 @@
       {
         "id": "4r",
         "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh repo",
+        "commandPath": "~/.config/ccstatusline/git-info.sh dir",
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:1a1b26",
