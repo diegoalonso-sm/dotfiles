@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Barra de uso del plan para ccstatusline (widget custom-command con preserveColors).
-# Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh 5h|7d|rama
-# "rama" imprime solo la sangría y la esquina de la última rama (la del agente).
+# Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh cabeza|5h|7d|espacio
+# "cabeza" imprime el correo y el inicio del árbol (la primera rama es la del agente).
+# "espacio" imprime una línea en blanco para separar el breadcrumb.
 # Verde < 70 %, amarillo 70-89 %, rojo >= 90 %. Sin datos de límite: no imprime nada.
 # A la izquierda va el correo de la cuenta de Claude; las dos barras salen de él en forma de árbol:
-#   󰀉 correo ─┬╴5h ...
-#            ├╴7d ...
-#            ╰╴agente (modelo, esfuerzo, contexto, duración)
+#   󰀉 correo ─┬╴agente (modelo, esfuerzo, contexto, duración)
+#            ├╴5h ...
+#            ╰╴7d ...
 set -uo pipefail
 
 ventana="${1:-5h}"
@@ -19,8 +20,12 @@ correo="${correo:-no account}"
 # ccstatusline recorta los espacios al inicio de la salida; el código de color previo lo evita.
 rama() { printf '\033[%sm%*s%s' "$gris" $(( ${#correo} + 4 )) '' "$1"; }
 
-if [ "$ventana" = rama ]; then
-  rama '╰╴'; printf '\033[0m'
+if [ "$ventana" = cabeza ]; then
+  printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴\033[0m' $'\U000F0009' "$correo" "$gris"
+  exit 0
+fi
+if [ "$ventana" = espacio ]; then
+  printf '\033[0m\u2800'   # ccstatusline omite las líneas vacías; el blanco braille (U+2800) la mantiene
   exit 0
 fi
 case "$ventana" in
@@ -55,10 +60,6 @@ if [ -n "$reset" ]; then
   hora=", resets in $resta"
 fi
 
-if [ "$ventana" = 5h ]; then
-  prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴' $'\U000F0009' "$correo" "$gris")
-else
-  prefijo=$(rama '├╴')
-fi
+if [ "$ventana" = 5h ]; then prefijo=$(rama '├╴'); else prefijo=$(rama '╰╴'); fi
 printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
   "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"

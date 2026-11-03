@@ -3,29 +3,9 @@
   "lines": [
     [
       {
-        "id": "b6",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
-        "preserveColors": true,
-        "timeout": 1500,
-        "color": "hex:c0caf5"
-      }
-    ],
-    [
-      {
-        "id": "b7",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
-        "preserveColors": true,
-        "timeout": 1500,
-        "color": "hex:c0caf5"
-      }
-    ],
-    [
-      {
         "id": "ramaag",
         "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh rama",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh cabeza",
         "preserveColors": true,
         "timeout": 1500,
         "merge": "no-padding"
@@ -73,6 +53,35 @@
         "type": "session-clock",
         "color": "hex:ff9e64",
         "rawValue": true
+      }
+    ],
+    [
+      {
+        "id": "b6",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 5h",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5"
+      }
+    ],
+    [
+      {
+        "id": "b7",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh 7d",
+        "preserveColors": true,
+        "timeout": 1500,
+        "color": "hex:c0caf5"
+      }
+    ],
+    [
+      {
+        "id": "esp",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh espacio",
+        "preserveColors": true,
+        "timeout": 1500
       }
     ],
     [
@@ -160,9 +169,11 @@
       "",
       "",
       "",
+      "",
       ""
     ],
     "endCaps": [
+      "",
       "",
       "",
       "",
