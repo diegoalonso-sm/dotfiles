@@ -2,12 +2,15 @@
 # Barra de uso del plan para ccstatusline (widget custom-command con preserveColors).
 # Lee el JSON de Claude Code por stdin. Uso: usage-bars.sh 5h|7d
 # Verde < 70 %, amarillo 70-89 %, rojo >= 90 %. Sin datos de límite: no imprime nada.
+# A la izquierda va el correo de la cuenta de Claude; las dos barras salen de él en forma de árbol:
+#   󰀉 correo ─┬╴5h ...
+#            └╴7d ...
 set -uo pipefail
 
 ventana="${1:-5h}"
 case "$ventana" in
-  5h) clave="five_hour"; etiqueta="├╴5h"; fmt="%a %d at %H:%M" ;;
-  7d) clave="seven_day"; etiqueta="╰╴7d"; fmt="%a %d at %H:%M" ;;
+  5h) clave="five_hour"; etiqueta="5h"; fmt="%a %d at %H:%M" ;;
+  7d) clave="seven_day"; etiqueta="7d"; fmt="%a %d at %H:%M" ;;
   *)  exit 0 ;;
 esac
 
@@ -37,6 +40,18 @@ if [ -n "$reset" ]; then
   hora=", resets $(LC_TIME=C date -d "@$reset" +"$fmt" 2>/dev/null) (in $resta)"
 fi
 
-gris='38;2;86;95;137'   # parte vacía: gris azulado fijo, distinto del color de uso
-printf '\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
-  "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
+gris='38;2;86;95;137'   # parte vacía y ramas del árbol: gris azulado fijo
+
+# Correo de la cuenta (oauthAccount.emailAddress en .claude.json, o en CLAUDE_CONFIG_DIR).
+correo=$(jq -r '.oauthAccount.emailAddress // empty' "${CLAUDE_CONFIG_DIR:-$HOME}/.claude.json" 2>/dev/null)
+correo="${correo:-no account}"
+if [ "$ventana" = 5h ]; then
+  prefijo=$(printf '\033[38;2;192;202;245m%s %s \033[%sm─┬╴' $'\U000F0009' "$correo" "$gris")
+else
+  # Ícono, espacio, correo, espacio y "─" ocupan ${#correo}+4 columnas; ahí cae la rama.
+  # Espacios no separables: ccstatusline borra los espacios normales al inicio de la línea.
+  sangria=""; for ((i = 0; i < ${#correo} + 4; i++)); do sangria+=$'\u00a0'; done
+  prefijo=$(printf '%s\033[%sm└╴' "$sangria" "$gris")
+fi
+printf '%s\033[%sm%s %s\033[%sm%s\033[%sm %s\033[0m%s' \
+  "$prefijo" "$color" "$etiqueta" "$barra_llena" "$gris" "$barra_vacia" "$color" "${entero}% used" "$hora"
