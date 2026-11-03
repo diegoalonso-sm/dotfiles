@@ -45,6 +45,7 @@ chmod +x "$BIN/ccstatusline"
 cp "$AQUI/ccstatusline/settings.json" "$CONFIG/settings.json"
 install -m 0755 "$AQUI/ccstatusline/usage-bars.sh" "$CONFIG/usage-bars.sh"
 install -m 0755 "$AQUI/ccstatusline/context-tokens.sh" "$CONFIG/context-tokens.sh"
+install -m 0755 "$AQUI/ccstatusline/git-info.sh" "$CONFIG/git-info.sh"
 
 # Mezcla solo la clave statusLine; el resto de settings.json no se toca.
 [ -f "$SETTINGS" ] || echo '{}' > "$SETTINGS"

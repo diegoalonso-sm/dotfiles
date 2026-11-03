@@ -24,11 +24,31 @@
         "rawValue": true
       },
       {
-        "id": "4",
-        "type": "git-branch",
+        "id": "4r",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh repo",
+        "preserveColors": false,
+        "timeout": 1500,
         "color": "hex:1a1b26",
-        "backgroundColor": "hex:7dcfff",
-        "rawValue": true
+        "backgroundColor": "hex:2ac3de"
+      },
+      {
+        "id": "4",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh branch",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:7dcfff"
+      },
+      {
+        "id": "4w",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:73daca"
       },
       {
         "id": "5",
