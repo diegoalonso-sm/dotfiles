@@ -145,6 +145,15 @@
         "timeout": 1500,
         "color": "hex:c0caf5"
       }
+    ],
+    [
+      {
+        "id": "esp2",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh espacio",
+        "preserveColors": true,
+        "timeout": 1500
+      }
     ]
   ],
   "flexMode": "full",
@@ -170,9 +179,11 @@
       "",
       "",
       "",
+      "",
       ""
     ],
     "endCaps": [
+      "",
       "",
       "",
       "",
