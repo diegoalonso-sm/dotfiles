@@ -39,15 +39,6 @@
         "backgroundColor": "hex:b4f9f8"
       },
       {
-        "id": "4c",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh changes",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:e0af68"
-      },
-      {
         "id": "4p",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/git-info.sh pr",
