@@ -39,7 +39,7 @@ elif [ "$entero" -ge 70 ]; then color='38;2;224;175;104'   # amarillo
 else                            color='38;2;158;206;106'   # verde
 fi
 
-ancho=50
+ancho=25
 llenas=$(( (entero * ancho + 50) / 100 )); [ "$llenas" -gt "$ancho" ] && llenas=$ancho
 barra_llena=""; barra_vacia=""
 for ((i = 0; i < llenas; i++)); do barra_llena+="●"; done
