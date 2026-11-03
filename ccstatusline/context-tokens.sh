@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # Contexto usado sobre el total, en tokens: "76k/200k 38%". Lee el JSON de Claude Code por stdin.
-# Sin colores propios: usa los del widget. Sin datos: no imprime nada.
+# Sin colores propios: usa los del widget. Sin datos: imprime "no context", como "no git" en la rama.
 set -uo pipefail
 
-jq -r '
+salida=$(jq -r '
   def fmt: if . >= 1000000 then ((. / 100000 | floor) / 10 | tostring) + "M"
            elif . >= 1000 then ((. / 1000 | round | tostring) + "k")
            else tostring end;
@@ -13,4 +13,5 @@ jq -r '
   | (($u.input_tokens // 0) + ($u.cache_creation_input_tokens // 0) + ($u.cache_read_input_tokens // 0)) as $usado
   | (if ($usado > 0) then $usado else (($c.used_percentage // 0) * $total / 100 | round) end) as $n
   | "\($n | fmt)/\($total | fmt) \(($n * 100 / $total) | round)%"
-'
+' 2>/dev/null)
+printf '%s' "${salida:-no context}"
