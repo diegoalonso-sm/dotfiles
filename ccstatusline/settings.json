@@ -14,7 +14,7 @@
         "type": "thinking-effort",
         "color": "hex:9d7cd8",
         "rawValue": true,
-        "backgroundColor": "hex:3b3352"
+        "merge": true
       },
       {
         "id": "5",
@@ -23,14 +23,29 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:9ece6a",
-        "backgroundColor": "hex:3b4837"
+        "merge": true
       },
       {
         "id": "6",
         "type": "session-clock",
         "color": "hex:ff9e64",
         "rawValue": true,
-        "backgroundColor": "hex:533c36"
+        "merge": true
+      },
+      {
+        "id": "capcwd",
+        "type": "custom-text",
+        "customText": "",
+        "color": "hex:bb9af7",
+        "merge": "no-padding"
+      },
+      {
+        "id": "padcwd",
+        "type": "custom-text",
+        "customText": " ",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:bb9af7",
+        "merge": "no-padding"
       },
       {
         "id": "3",
@@ -46,7 +61,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:2ac3de",
-        "backgroundColor": "hex:1e4554"
+        "merge": true
       },
       {
         "id": "4",
@@ -55,7 +70,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:7dcfff",
-        "backgroundColor": "hex:33485c"
+        "merge": true
       },
       {
         "id": "4w",
@@ -64,7 +79,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:73daca",
-        "backgroundColor": "hex:304b4f"
+        "merge": true
       },
       {
         "id": "4u",
@@ -73,7 +88,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:b4f9f8",
-        "backgroundColor": "hex:40525a"
+        "merge": true
       },
       {
         "id": "4c",
@@ -82,7 +97,7 @@
         "preserveColors": false,
         "timeout": 1500,
         "color": "hex:e0af68",
-        "backgroundColor": "hex:4c4036"
+        "merge": true
       },
       {
         "id": "4p",
@@ -90,8 +105,7 @@
         "commandPath": "~/.config/ccstatusline/git-info.sh pr",
         "preserveColors": false,
         "timeout": 1500,
-        "color": "hex:f7768e",
-        "backgroundColor": "hex:513240"
+        "color": "hex:f7768e"
       }
     ],
     [
@@ -139,7 +153,7 @@
       ""
     ],
     "endCaps": [
-      "",
+      "",
       "",
       ""
     ],
