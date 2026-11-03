@@ -3,6 +3,77 @@
   "lines": [
     [
       {
+        "id": "4r",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh dir",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:bb9af7"
+      },
+      {
+        "id": "4",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh branch",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:7dcfff"
+      },
+      {
+        "id": "4w",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:73daca"
+      },
+      {
+        "id": "4u",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:b4f9f8"
+      },
+      {
+        "id": "4p",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/git-info.sh pr",
+        "preserveColors": false,
+        "timeout": 1500,
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:f7768e",
+        "merge": "no-padding"
+      },
+      {
+        "id": "padpr",
+        "type": "custom-text",
+        "customText": " ",
+        "color": "hex:1a1b26",
+        "backgroundColor": "hex:f7768e",
+        "merge": "no-padding"
+      },
+      {
+        "id": "cierre",
+        "type": "custom-text",
+        "customText": "",
+        "color": "hex:f7768e"
+      }
+    ],
+    [
+      {
+        "id": "esp",
+        "type": "custom-command",
+        "commandPath": "~/.config/ccstatusline/usage-bars.sh espacio",
+        "preserveColors": true,
+        "timeout": 1500
+      }
+    ],
+    [
+      {
         "id": "ramaag",
         "type": "custom-command",
         "commandPath": "~/.config/ccstatusline/usage-bars.sh cabeza",
@@ -73,77 +144,6 @@
         "preserveColors": true,
         "timeout": 1500,
         "color": "hex:c0caf5"
-      }
-    ],
-    [
-      {
-        "id": "esp",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/usage-bars.sh espacio",
-        "preserveColors": true,
-        "timeout": 1500
-      }
-    ],
-    [
-      {
-        "id": "4r",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh dir",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:bb9af7"
-      },
-      {
-        "id": "4",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh branch",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:7dcfff"
-      },
-      {
-        "id": "4w",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh worktree",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:73daca"
-      },
-      {
-        "id": "4u",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh upstream",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:b4f9f8"
-      },
-      {
-        "id": "4p",
-        "type": "custom-command",
-        "commandPath": "~/.config/ccstatusline/git-info.sh pr",
-        "preserveColors": false,
-        "timeout": 1500,
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:f7768e",
-        "merge": "no-padding"
-      },
-      {
-        "id": "padpr",
-        "type": "custom-text",
-        "customText": " ",
-        "color": "hex:1a1b26",
-        "backgroundColor": "hex:f7768e",
-        "merge": "no-padding"
-      },
-      {
-        "id": "cierre",
-        "type": "custom-text",
-        "customText": "",
-        "color": "hex:f7768e"
       }
     ]
   ],
